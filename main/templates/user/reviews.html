@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+    <!-- Featured Products -->
+    <h3 class="my-4 border-bottom border-top py-2">Reviewed Item</h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user-sidebar.html' %}
+        </div>
+
+        <div class="col-md-9">
+            <div class="table-responsive" style="background: linear-gradient(90deg, rgba(241,246,249,1) 0%, rgba(208,227,238,1) 100%); border-radius:25px">
+                <table class="table">
+                    <thead>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>My Review</th>
+                        <th>My Rating</th>
+                        <th>Delete</th>
+                    </thead>
+
+                    <tbody>
+                        {% for review in reviews %}
+                        <tr>
+                            <td align="center"><a class="text-dark" href="/product/{{review.product.slug}}/{{review.product.id}}">{{ review.product.title }}</a></td>
+                            <td>
+                                <img height="150" width="150" src="/media/{{review.product.productattribute_set.first.image}}" 
+                                    alt="{{review.product.title}}" style="border-radius:10px" >
+                            </td>
+                            <td>&#8377 {{review.product.productattribute_set.first.price}}</td>
+                            <td>{{review.review_text}}</td>
+                            <td>{{review.review_rating}}/5</td>
+                            <td><a href="{% url 'delete-review' review.id %}" ><i class="btn btn-danger fas fa-trash-alt"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

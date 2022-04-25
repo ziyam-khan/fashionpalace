@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fashion Palace</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.min.css' %}" />
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'bs4/bootstrap.min.css' %}" />
+  <!-- Main Jquery -->
+  <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+  <!-- Bootstrap 4 JS -->
+  <script type="text/javascript" src="{% static 'bs4/bootstrap.min.js' %}"></script>
+  <!-- custom js -->
+  <script type="text/javascript" src="{% static 'custom.js' %}"></script>
+  <!-- custom css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm py-2" style="background: linear-gradient(90deg, rgba(53,64,82,1) 40%, rgba(89,103,126,1) 100%);">
+    <!-- style="background-color: #e3f2fd;" #a464c4 #74cfbf-->
+    <div class="container">
+      <!-- <a class="navbar-brand" href="/">Fashion Palace</a> -->
+      <a href="/"><img class="mr-3" src="{% static 'fashion-palace-th5.png'%}" height="45" width="105"/></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- ---------- Search Bar ---------- -->
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <div class="input-group">
+            <input name="q" type="text" class="form-control" placeholder="Search"  />
+            <div class="input-group-append">
+              <button class="btn btn-outline-info" type="submit" id="button-addon2"><i class="fa fa-search fa-lg"></i></button>
+            </div>
+          </div>
+        </form>
+        <!--  ----------Search Bar ---------- -->
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/">HOME</a>
+          </li>
+
+          <li class="mydropdownjQuery nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              BROWSE</a>
+            <div class="dropdown-menu border" aria-labelledby="navbarDropdown">
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item btn-dark {% if request.path == '/category-list' %}active {% endif %}" href="{% url 'category-list' %}"> CATEGORIES <i class="fas fa-chevron-circle-right"></i></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item btn-dark {% if request.path == '/brand-list' %}active {% endif %}" href="{% url 'brand-list' %}"> BRANDS <i class="fas fa-chevron-circle-right"></i></a>
+              <div class="dropdown-divider"></div>              
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'product-list' %}">SHOP ALL</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> CART (<span
+                class="cart-list">{{request.session.cartdata|length}}</span>)</a>
+          </li>
+
+          <li class="mydropdownjQuery nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-user"></i> ACCOUNT</a>
+
+            <div class="dropdown-menu border" aria-labelledby="navbarDropdown">
+              {% if user.is_authenticated %}
+              <div class="ml-3">Welcome, {{ request.user.username }}</div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'my_dashboard' %}"><i class="fas fa-bars"></i> Dashboard</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <div class="dropdown-divider"></div>
+              {% else %}
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'signup' %}"><i class="fas fa-sync-alt"></i> Signup</a>
+              <div class="dropdown-divider"></div>
+              {% endif %}
+                <!-- <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock content %}
+  
+  <footer class="pt-4 my-md-5 pt-md-5 shadow-sm container border rounded ">
+
+    <div class="row">
+      <div class="col-12 col-md">
+        <a href="#">Fashion Palace</a>
+        <small class="d-block mb-3 text-muted">&copy; 2022-2023 <br> Contact <br><i>M. Riyaz</i><br><i class="fas fa-lg fa-phone-alt"></i> <b>9998408864</b><br> <br><i>M. Safwwan</i><br><i class="fas fa-lg fa-phone-alt"></i> <b>9725948450</b></small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">feature 1</a></li>
+          <li><a class="text-muted" href="#">feature 2</a></li>
+          <li><a class="text-muted" href="#">feature 3</a></li>
+          <li><a class="text-muted" href="#">feature 4</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Contact Us</a></li>
+          <li><a class="text-muted" href="#">Resource</a></li>
+          <li><a class="text-muted" href="#">Resource name</a></li>
+          <li><a class="text-muted" href="#">Another resource</a></li>
+          <li><a class="text-muted" href="#">Final resource</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Team</a></li>
+          <li><a class="text-muted" href="#">Location</a></li>
+          <li><a class="text-muted" href="#">Privacy</a></li>
+          <li><a class="text-muted" href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+    <!-- Featured Products -->
+    <h3 class="my-4 border-bottom border-top py-2">Order Details</h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user-sidebar.html' %}
+        </div>
+
+        <div class="col-md-9">
+            <div class="table-responsive" style="background: linear-gradient(90deg, rgba(241,246,249,1) 0%, rgba(208,227,238,1) 100%); border-radius:25px">
+                <table class="table">
+                    <thead>
+                        <th>Invoice No.</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </thead>
+
+                    <tbody>
+                        {% for item in orderitems %}
+                        <tr>
+                            <td>{{ item.invoice_no }}</td>
+                            <td>
+                                <p><img src="/media/{{item.image}}" width="80"/></p>
+                                {{ item.item }} 
+                            </td>
+                            <td>{{ item.qty }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

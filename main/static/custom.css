@@ -1,0 +1,13 @@
+.focused{
+	outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%) !important;
+}
+
+.errorlist li{
+	color: rgb(255, 0, 0);
+}
+
+.foot-gradient{
+	background: linear-gradient(90deg, rgba(134,201,245,1) 0%, rgba(136,179,185,1) 0%, rgba(217,224,233,1) 0%, rgba(0,212,255,1) 100%, rgba(231,207,244,1) 100%);
+}
+

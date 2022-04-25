@@ -1,0 +1,10 @@
+<div class="list-group">
+    <a href="{% url 'my_dashboard' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/my-dashboard' %}active {% endif %}"><i class="far fa-chart-bar"></i> Dashboard</a>
+    <a href="{% url 'edit-profile' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/edit-profile' %}active {% endif %}"><i class="fas fa-user-circle"></i> Profile</a>
+    <a href="{% url 'password_change' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/accounts/password_change/' %}active {% endif %}"><i class="fas fa-key"></i> Change Password</a>
+    <a href="{% url 'my_orders' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/my-orders' %}active {% endif %}"><i class="fas fa-box-open"></i> Orders</a>
+    <a href="{% url 'my_wishlist' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/my-wishlist' %}active {% endif %}"><i class="far fa-heart"></i> Whishlists</a>
+    <a href="{% url 'my-addressbook' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/my-addressbook' %}active {% endif %}"><i class="far fa-address-book"></i> Addresses</a>
+    <a href="{% url 'my-reviews' %}" class="my-2 btn btn-outline-dark shadow list-group-item {% if request.path == '/my-reviews' %}active {% endif %}"><i class="far fa-star"></i> My Reviews</a>
+    <a href="{% url 'logout' %}" class="my-2 btn btn-outline-dark shadow list-group-item"><i class="fas fa-power-off"></i> Logout</a>    
+</div>

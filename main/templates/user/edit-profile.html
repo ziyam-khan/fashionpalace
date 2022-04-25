@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+    <!-- Featured Products -->
+    <h3 class="my-4 border-bottom border-top py-2">Edit Profile</h3>
+
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user-sidebar.html' %}
+        </div>
+
+        <div class="col-md-9">
+            {% if msg %}
+            <p class="text-success">{{msg}}</p>
+            {% endif %}
+
+            <div class="card py-5" style="background: linear-gradient(90deg, rgba(241,246,249,1) 0%, rgba(208,227,238,1) 100%); border-radius:25px">
+
+                <div class="d-flex justify-content-center">
+                    <h3 id="form-title">EDIT USER PROFILE</h3>
+                </div>
+
+                <div class="d-flex justify-content-center">
+
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text mr-1 pr-5"><i class="far fa-user fa-lg pr-1" style="#2b3647;"></i>First
+                                    Name</span>
+                            </div>
+                            {{form.first_name}}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text mr-1 pr-5"><i class="far fa-user fa-lg pr-1"></i>Last
+                                    Name</span>
+                            </div>
+                            {{form.last_name}}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text mr-1 px-5"><i
+                                        class="far fa-envelope fa-lg pr-1"></i>Email</span>
+                            </div>
+                            {{form.email}}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text mr-1 pr-5 pl-4"><i
+                                        class="fas fa-user pr-1"></i>Username</span>
+                            </div>
+                            {{form.username}}
+                        </div>
+
+                        <div class="d-flex justify-content-center mt-3">
+                            <input class="btn text-light" type="submit" value="Save Changes"
+                                style="width: 100%;background: #2b3647;">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+
+</main>
+{% endblock %}

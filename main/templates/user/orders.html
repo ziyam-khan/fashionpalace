@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+    <!-- Featured Products -->
+    <h3 class="my-4 border-bottom border-top py-2">My Orders</h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user-sidebar.html' %}
+        </div>
+
+        <div class="col-md-9">
+            <div class="table-responsive" style="background: linear-gradient(90deg, rgba(241,246,249,1) 0%, rgba(208,227,238,1) 100%); border-radius:25px;">
+                <table class="table">
+                    <thead>
+                        <th>Order Id.</th>
+                        <th>Total Amount</th>
+                        <th>Payment Completed</th>
+                        <th>Ordered On</th>
+                        <th>Deliver to</th>
+                    </thead>
+
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>INV-2022<a href="{% url 'my_order_items' order.id %}">{{order.id}}</a></td>
+                            <td>&#8377 {{ order.total_amt }}</td>
+                            <td>{{ order.paid_status }}</td>
+                            <td>{{ order.order_dt }}</td>
+                            <td>{{address.address}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

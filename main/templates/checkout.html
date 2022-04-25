@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4" id="cartList" style="background: linear-gradient(90deg, rgba(241,246,249,1) 0%, rgba(208,227,238,1) 100%); border-radius: 25px;">
+	<!-- Featured Products -->
+	
+	<div class="row">
+
+		<div class="col-md-9">
+			<h3 class="my-4 pb-1">Cart ({{totalitems}})</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Qty</th>
+						<th>Price</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product_id,item in cart_data.items %}
+					<tr>
+						<td align="center">
+							<img src="/media/{{item.image}}" height="150" width="150" style="border-radius: 10px;" />
+							<p align="center"><a class="text-dark"
+									href="/product/{{item.title|slugify}}/{{product_id}}">{{item.title}}</a></p>
+						</td>
+						<td>
+							{{item.qty}}
+						</td>
+						<td>&#8377 {{item.price}}</td>
+						<td>&#8377 {% widthratio item.price 1 item.qty %}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2"></td>
+						<th>Grand Total</th>
+						<th>&#8377 {{total_amt}}</th>
+					</tr>
+					{% if totalitems %}
+					<tr>
+						<td colspan="4" align="right">
+							{{form.render}}
+						</td>
+					</tr>
+					{% endif %}
+				</tfoot>
+			</table>
+
+		</div>
+
+		<div class="col-md-3">
+			<h3 class="my-4 border-bottom pb-1">Selected Address</h3>
+			<div class="card" style="height: 200px;">
+				<div class="card-body">
+					<p>{{address.address}}</p>
+				</div>
+				<div class="card-footer">
+					<a href="{% url 'my-addressbook' %}" class="btn btn-sm btn-outline-info shadow">Change Address <i class="fa fa-arrow-right"></i></a>
+				</div>
+			</div>
+			<a href="{% url 'cash-on-delivery' %}" class="btn btn btn-warning mt-4">Cash on Delivery <i class="fa fa-arrow-right"></i></a>
+			
+		</div>
+
+	</div>
+
+</main>
+{% endblock %}
